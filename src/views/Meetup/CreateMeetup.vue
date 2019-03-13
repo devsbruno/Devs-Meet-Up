@@ -9,7 +9,7 @@
     <v-flex xs12>
 
        <!-- new meet-up form -->
-      <v-form @submit="onCreateMeetup">
+      <v-form @submit="onCreateMeetup" class="cyan lighten-3 red--text py-4" >
         <v-layout row>
           <v-flex xs12 sm8 offset-sm2>
             <v-text-field name='title' label='Title' id="title"  flat required prepend-inner-icon="search" v-model="title" ></v-text-field>

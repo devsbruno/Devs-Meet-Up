@@ -12,7 +12,7 @@
              <v-card-title primary-title class="pt-0 ml-1">
              <div>
              <div class="headline blue--text">{{meetup.title}}</div>
-             <div class="primary--text"> {{meetup.date | date}}</div>
+             <div class="primary--text"> {{meetup.date | date}}  -  {{meetup.location}}</div>
              <div>{{meetup.description}}</div>
              </div>
              </v-card-title>

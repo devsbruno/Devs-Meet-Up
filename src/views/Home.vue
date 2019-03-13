@@ -1,6 +1,6 @@
 <template>
-	<v-container class="pt-1">
-		<v-layout row wrap class="mt-0">
+	<v-container class="pt-2">
+		<v-layout row wrap class="mt-3 mb-5">
 			<v-flex xs12 sm6 class="text-xs-center text-sm-right">
         <v-btn large router to="/meetups" class="primary"> Explore Meetups</v-btn>
 			</v-flex>
@@ -10,10 +10,10 @@
 		</v-layout>
 
 		<v-layout row wrap class="mt-2">
-			<v-flex xs12 class="justify-centre">
-      <v-carousel hide-delimiters style="cursor:pointer;" height='379px'>
+			<v-flex xs12 sm12  class="justify-centre">
+      <v-carousel hide-delimiters style="cursor:pointer;" height='579px'>
         <v-carousel-item   v-for="meetup in meetups" :key="meetup.id"
-        :src="meetup.imageUrl" @click="onLoadMeetup(meetup.id)" > <div class="titl0 display-5">{{meetup.title}}</div></v-carousel-item>
+        :src="meetup.imageUrl" @click="onLoadMeetup(meetup.id)" > <div class="titl0 display-5 ">{{meetup.title}}</div></v-carousel-item>
       </v-carousel>
 			</v-flex>
     </v-layout>

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as firebase from 'firebase'
 
 Vue.use(Vuex)
 
@@ -18,15 +19,26 @@ export const store  = new Vuex.Store({
       {imageUrl: 'https://images.pexels.com/photos/2251/clouds-historical-time-tower.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500', title: 'Meetup in London', id :'Ngara',date:'2019-09-25' ,description:"More pigeon pie, please. The rains of castamere. The wolf and the lion. Winter is coming. The winds of Winter. As High as Honor."  , location: 'Githurai'}
     ],
 
-    user: {
-      id: 'roosters',
-      registeredmeetups: 'Nairoberrye'
-    }
+    user: null,
+    loading: false,
+    error : null
 
   },
   mutations: {
     createMeetup (state, payload) {
       state.loadedMeetups.push(payload)
+    },
+    setUser (state, payload) {
+      state.user = payload
+    },
+    setLoading (state, payload) {
+      state.loading = payload
+    },
+    setError (state, payload) {
+      state.error =payload
+    },
+    clearError (state) {
+      state.error = null 
     }
   },
   actions: {
@@ -36,11 +48,56 @@ export const store  = new Vuex.Store({
        location : payload.location,
        imageUrl : payload.imageUrl,
        description : payload.description,
-       date : payload.date,
-       id : 'sdjnfjjdjkmjfddf'
+       date : payload.date
      }
+
     //  Reach out to firebase to store it
     commit ('createMeetup', meetup)
+   },
+   signUserUp ({commit}, payload ) {
+     commit ('setLoading', true)
+     commit ('clearError')
+    firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then(
+      user => {
+        commit('setLoading', false)
+        const newUser = {
+          id : user.uid,
+          registeredmeetups: []
+        }
+        commit('setUser' , newUser)
+      }
+    )
+    .catch(
+      error =>{
+        commit('setLoading', false)
+        commit('setError', error)
+        console.log(error);        
+      }
+    )
+   },
+   signUserIn({commit}, payload){
+    commit ('setLoading', true)
+    commit ('clearError')
+     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(
+       user => {
+        commit('setLoading', false)
+         const newUser = {
+          id : user.uid,
+          registeredmeetups: []
+         }
+         commit('setUser', newUser)
+       }
+     )
+     .catch(
+       error =>{
+        commit('setLoading', false)
+        commit('setError', error) 
+         console.log(error)         
+       }
+     )
+   },
+   clearError({commit}) {
+     commit ('clearError')
    }
   },
 
@@ -65,6 +122,15 @@ export const store  = new Vuex.Store({
     // this gets a subset of meetup to be showcased on the carousel
     featuredMeetups (state, getters) {
       return state.loadedMeetups.slice(0, 17)
+    },
+    user (state) {
+      return state.user
+    },
+    loading (state) {
+      return state.loading
+    },
+    error  (state) {
+      return state.error
     }
   }
 })

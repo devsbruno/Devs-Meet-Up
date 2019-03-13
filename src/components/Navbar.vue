@@ -9,7 +9,7 @@
       <v-toolbar-side-icon   @click="sideNav=!sideNav" scroll-toolbar-off-screen 
       class="hidden-md-and-up "> 
       </v-toolbar-side-icon> 
-      <router-link to="/" tag="span" style="cursor:pointer" class="display-1">Devs</router-link>
+      <router-link to="/" tag="span" style="cursor:pointer" class="display-1">Devs Meet-Upp</router-link>
       <v-spacer></v-spacer>
        
 
@@ -43,17 +43,29 @@
 export default {
   data() {
     return{
-      sideNav : false,
-      
-      menuItems :[
+      sideNav : false,      
+    }
+  },
+
+    computed : {
+    menuItems () {
+      let menuItems =[
+      {  icon:'face', title : "Sign Up", route:"/signup" },
+      {  icon:'lock_open', title : "Sign In", route:"/signin" }
+      ]
+      if (this.userIsAuthenticated) {
+        menuItems =[
       {  icon:'supervisor_account', title : "View Meet-ups", route:"/meetups" },
       {  icon:'room', title : "Organize Meetup", route:"/meetup/new" },
-      {  icon:'person', title : "Profile", route:"/profile" },
-      {  icon:'face', title : "Sign Up", route:"/signup" },
-      {  icon:'lock_open', title : "Sign In", route:"/signin" },
-
-     ]
+      {  icon:'person', title : "Profile", route:"/profile" }
+        ]
+      }
+      return menuItems
+    },
+    userIsAuthenticated () {
+      return this.$store.getters.user !==null && this.$store.getters.user !== undefined
     }
+    
     
   }
 }
