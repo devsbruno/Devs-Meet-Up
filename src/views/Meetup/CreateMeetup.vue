@@ -60,18 +60,18 @@
         </v-menu>
         </v-flex>
 
-    <v-flex xs6 sm3 md2>
-      <v-menu ref="menu" v-model="menu" :close-on-content-click="false" :nudge-right="40" :return-value.sync="time"
+        <v-flex xs6 sm3 md2>
+       <v-menu ref="menu" v-model="menu" :close-on-content-click="false" :nudge-right="40" :return-value.sync="time"
         lazy transition="scale-transition" offset-y full-width max-width="270px" min-width="237px" >
         <template v-slot:activator="{ on }">
           <v-text-field v-model="time" label="Pick Meet-up Time" prepend-icon="access_time" readonly v-on="on" ></v-text-field>
         </template>
         <v-time-picker v-if="menu" v-model="time" full-width @click:minute="$refs.menu.save(time)" ></v-time-picker>
-      </v-menu>
-    </v-flex>
+       </v-menu>
+       </v-flex>
        </v-layout>
         <v-layout row>
-          <v-flex xs12 sm8 offset-sm4>
+        <v-flex xs12 sm8 offset-sm4>
           <v-btn class="primary" :disabled="!formIsValid" type="submit">Create Meet-Up</v-btn>
           </v-flex>
         </v-layout>

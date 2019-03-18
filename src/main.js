@@ -12,13 +12,21 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import Datefilter from './filters/date'
 import AlertCmp from './components/shared/Alert.vue'
 import EditMeetupDetailsDialog from './components/edit/EditMeetupDetailsDialog.vue'
+import EditMeetupDateDialog from './components/edit/EditMeetupDateDialog.vue'
+import Registration from './components/edit/registration.vue'
+
+
+
 
 
 Vue.config.productionTip = false
 
 Vue.filter('date', Datefilter)
 Vue.component('app-alert',AlertCmp)
-Vue.component('app-edit-meetup-details-dialog',EditMeetupDetailsDialog)
+Vue.component('app-edit-meetup-details-dialog', EditMeetupDetailsDialog)
+Vue.component('app-edit-meetup-date-dialog', EditMeetupDateDialog)
+Vue.component('app-registration', Registration)
+
 
 new Vue({
   router,
@@ -35,6 +43,8 @@ new Vue({
     firebase.auth().onAuthStateChanged((user)=>{
       if(user) {
         this.$store.dispatch('autoSignIn', user)
+        this.$store.dispatch('fetchUserData')
+
       }
     })
     this.$store.dispatch('loadMeetups')

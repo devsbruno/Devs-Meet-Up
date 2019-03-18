@@ -57,11 +57,11 @@ export default {
 <style scoped>
 .titl0 {
 	position: absolute;
-	bottom: 07px;
+	top: 13px;
 	background-color: #fff;
 	color:blueviolet;
 	padding: 3px 17px; 
-  right: 1%;
+  left: 1%;
 	font-size: 28px;
 }
 </style>

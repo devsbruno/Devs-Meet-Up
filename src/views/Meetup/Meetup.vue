@@ -15,6 +15,7 @@
             <v-layout fill-height>
               <v-flex xs12 align-end flexbox>
                 <span class="headline titl4 orange lighten-5 ">{{meetup.title}} </span>
+             
               </v-flex>
             </v-layout>
           </v-container>
@@ -26,11 +27,15 @@
           </div>
         </v-card-text>
         <v-card-actions class="mt-0 pt-0">
-          <template v-if="userIsCreator">
+          <template  v-if="userIsCreator">
             <app-edit-meetup-details-dialog :meetup='meetup'></app-edit-meetup-details-dialog>
+           </template>
+          <template  v-if="userIsCreator">
+            <app-edit-meetup-date-dialog :meetup='meetup' ></app-edit-meetup-date-dialog>
           </template>
+          
 					<v-spacer></v-spacer>
-          <v-btn class="primary">Register</v-btn>
+          <app-registration :meetupId="meetup.id" v-if="userisAuthenticated && !userIsCreator"></app-registration>
         </v-card-actions> 
 				</v-card>
 		 </v-flex>
@@ -64,10 +69,11 @@ export default {
 <style scoped>
 .titl4 {
 	position: absolute;
-	bottom: 17px;
+  left: 13px;
+	top: 13px;
 	color:blueviolet;
 	padding: 10px; 
-  left: 13px;
 	font: size 34rem; 
 }
+
 </style>

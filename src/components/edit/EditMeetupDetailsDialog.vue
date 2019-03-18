@@ -1,7 +1,7 @@
 <template>
 	<v-dialog width="450px" persistent v-model="editDialog">
-		<v-btn fab accent slot="activator">
-		<v-icon>edit</v-icon>
+		<v-btn accent small class="orange white--text" slot="activator">
+			Edit Details
 		</v-btn>
 		<v-card>
 			<v-container>
@@ -21,19 +21,31 @@
 					   </v-textarea>  
 						<v-flex xs12 sm8 offset-sm2>
             <v-text-field name='location' label='Location' id="location"  flat required prepend-inner-icon="face" v-model="editedLocation"></v-text-field> </v-flex>
+
+            
+
+
+
+
+						
 						</v-card-text>
 					</v-flex>
 				</v-layout>
 				<v-divider color='red'></v-divider>
+
+				        
+
+
 				<v-layout row wrap>
 					<v-flex xs12>
 						<v-card-actions>
-							<v-btn flat class="blue--text darken-1" @click="editDialog= false" >Close</v-btn>
+							<v-btn  class="red white--text darken-1" @click="editDialog= false" >Close</v-btn>
 							<v-spacer></v-spacer>
-							<v-btn flat class="blue--text darken-1" @click="onSaveChanges">Save</v-btn>
+							<v-btn  class="green white--text darken-1" @click="onSaveChanges">Save</v-btn>
 						</v-card-actions>
 					</v-flex>
 				</v-layout>
+				<v-divider color='red'></v-divider>
 			</v-container>
 		</v-card>
 	</v-dialog>
@@ -47,7 +59,15 @@ export default {
 			editDialog : false,
 			editedTitle : this.meetup.title,
 			editedLocation : this.meetup.location,
-			editedDescription : this.meetup.description
+			editedDescription : this.meetup.description,
+
+			 date: new Date().toISOString().substr(0, 10),
+      time: new Date().toISOString().substr(11, 5),
+      menu: false,
+      modal: false,
+      menu2: false
+
+			
 		}
 	},
 	methods:{
