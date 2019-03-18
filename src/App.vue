@@ -1,8 +1,7 @@
 <template>
   <v-app>
     <Nav/>
-    <v-content class="grey lighten-2" >
-    
+    <v-content class="grey lighten-2" >    
        <router-view></router-view>
     </v-content>
 

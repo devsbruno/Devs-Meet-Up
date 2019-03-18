@@ -15,11 +15,17 @@
 
       <!-- toolbar-links -->
       <span v-for="link in menuItems" :key="link.title" class="hidden-xs-and-down " > 
-        <v-btn round color='orange lighten-5' small  router :to='link.route'>
+        <v-btn flat color='orange lighten-5' small  router :to='link.route'>
             <v-icon  class="  purple--text">{{link.icon}}</v-icon>
           <span  class="red--text text--darken-4 font-weight-bold pl-1">{{link.title}}</span>
         </v-btn>
       </span>
+
+        <v-btn flat small  @click="onLogOut" color='orange lighten-5' v-if="userIsAuthenticated" >
+            <v-icon  class="  purple--text">exit_to_app</v-icon>
+          <span  class="red--text text--darken-4 font-weight-bold pl-1">Log Out</span>
+        </v-btn>   
+
     </v-toolbar>
 
     <!-- the side-nav links -->
@@ -33,6 +39,17 @@
             <v-list-tile-title class="red--text text--darken-4 ">{{link.title}}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+
+        <v-list-tile  @click="sideNav=false" class="mt-1" v-if="userIsAuthenticated">
+          <v-list-tile-action>
+            <v-icon class="  purple--text">exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title @click="onLogOut"  class="red--text text--darken-4 ">Log Out</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+
       </v-list>   
     </v-navigation-drawer>
 
@@ -46,8 +63,13 @@ export default {
       sideNav : false,      
     }
   },
-
-    computed : {
+  methods:{
+    onLogOut () {
+      this.$store.dispatch('logOut')
+    }
+  },
+   
+  computed : {
     menuItems () {
       let menuItems =[
       {  icon:'face', title : "Sign Up", route:"/signup" },

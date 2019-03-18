@@ -34,15 +34,9 @@
 export default {
 	computed : {
 		meetup (id) {
-			return this.$store.getters.loadedMeetup(this.$route.params.id)
-		
+			return this.$store.getters.loadedMeetup(this.$route.params.id)		
 		}
 	}
-	// data() {
-	// 	return {
-	// 		 theid : this.$route.params
-	// 	}
-	// }
 	
 }
 </script>
