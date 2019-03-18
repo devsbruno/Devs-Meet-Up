@@ -11,12 +11,14 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 import Datefilter from './filters/date'
 import AlertCmp from './components/shared/Alert.vue'
+import EditMeetupDetailsDialog from './components/edit/EditMeetupDetailsDialog.vue'
 
 
 Vue.config.productionTip = false
 
 Vue.filter('date', Datefilter)
 Vue.component('app-alert',AlertCmp)
+Vue.component('app-edit-meetup-details-dialog',EditMeetupDetailsDialog)
 
 new Vue({
   router,
