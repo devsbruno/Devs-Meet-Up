@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export const store  = new Vuex.Store({
   state: {
+    // checking the git pull requeast
     loadedMeetups:[
       {imageUrl: 'https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', title: 'Meetup in Nairobi', id :'githu',date:'2019-05-07', description:" Fire and blood. I pledge my life and honor to the Night's Watch, for this night and all the nights to come. The battle of the redgrass field. Pay the iron price. And now his watch is ended. The night is dark and full of terrors"  , location: 'Githurai' },
 
